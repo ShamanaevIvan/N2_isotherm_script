@@ -1,0 +1,267 @@
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE  1
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                                  ANALYSIS LOG
+
+      RELATIVE    PRESSURE    VOL ADSORBED    ELAPSED TIME     SATURATION
+      PRESSURE     (mmHg)      (cc/g STP)       (HR:MN)       PRESS.(mmHg)
+
+                                                  1:26          755.608
+       0.0045        3.414         3.9411         2:01
+       0.0111        8.369         5.0386         2:17
+       0.0280       21.156         6.1618         2:26
+       0.0611       46.194         7.1627         2:34
+       0.0738       55.835         7.4125         2:40
+       0.0994       75.183         7.8078         2:48
+       0.1485      112.292         8.5881         2:54
+       0.1990      150.524         9.2302         3:01
+       0.2489      188.323         9.8762         3:06
+       0.2989      226.109        10.5368         3:14
+       0.3952      298.994        12.0630         3:20
+       0.4930      373.046        14.5741         3:29
+                                                  3:31          756.694
+       0.5476      414.318        16.5683         3:37
+       0.5971      451.651        18.7423         3:44
+       0.6464      488.791        21.2215         3:52
+       0.6977      527.458        23.6361         4:00
+       0.7474      564.871        25.6684         4:07
+       0.7961      601.601        27.6599         4:14
+       0.8452      638.527        30.1084         4:21
+       0.8941      675.274        33.5576         4:30
+       0.9243      697.888        36.0296         4:38
+       0.9484      715.900        38.3156         4:47
+       0.9677      730.314        40.8020         4:55
+       0.9797      739.071        43.0085         5:06
+       0.9926      748.553        46.7551         5:17
+       0.9573      721.688        42.8456         5:26
+                                                  5:33          753.746
+       0.9207      694.009        41.4752         5:34
+       0.8676      653.975        40.1156         5:40
+       0.8210      618.815        37.9347         5:48
+       0.7998      602.849        36.6845         5:55
+       0.7512      566.251        34.3750         6:02
+       0.7031      529.957        32.5631         6:10
+       0.6536      492.671        30.8734         6:17
+       0.6034      454.806        29.0879         6:24
+       0.5531      416.947        27.0888         6:32
+       0.5058      381.260        24.3049         6:47
+       0.4840      364.831        20.6438         7:04
+       0.4573      344.722        15.6119         7:21
+       0.4260      321.130        12.5184         7:32
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE  2
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                                  ANALYSIS LOG
+
+      RELATIVE    PRESSURE    VOL ADSORBED    ELAPSED TIME     SATURATION
+      PRESSURE     (mmHg)      (cc/g STP)       (HR:MN)       PRESS.(mmHg)
+
+                                                  7:36          753.798
+       0.3660      275.867        11.1272         7:40
+       0.3133      236.132        10.3473         7:46
+       0.2516      189.642         9.5835         7:54
+       0.1512      114.009         8.3436         8:02
+       0.0520       39.232         6.4516         8:18
+       0.0045        3.414         2.9574         8:32
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE  4
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                             BET SURFACE AREA REPORT
+
+          BET SURFACE AREA:          33.4505   +/-    0.1568   sq. m/g
+          SLOPE:                      0.128899 +/-    0.000605
+          Y-INTERCEPT:                0.001240 +/-    0.000077
+          C:                        104.954376 
+          VM:                         7.684120 cc/g STP
+          CORRELATION COEFFICIENT: 9.99967E-01
+
+             RELATIVE          VOL ADSORBED                1/
+             PRESSURE           (cc/g STP)           [VA(Po/P - 1)]
+
+              0.0611               7.1627                0.009083
+              0.0738               7.4125                0.010754
+              0.0994               7.8078                0.014137
+              0.1485               8.5881                0.020301
+              0.1990               9.2302                0.026915
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE  6
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                            MICROPORE ANALYSIS REPORT
+
+             MICROPORE VOLUME:            -0.001097 cc/g
+             MICROPORE AREA:              -3.2412   sq. m/g
+             EXTERNAL SURFACE AREA:       36.6917   sq. m/g
+             SLOPE:                        2.372107 +/-    0.025036
+             Y-INTERCEPT:                 -0.708969 +/-    0.105149
+             CORRELATION COEFFICIENT:   9.99833E-01
+
+             RELATIVE           STATISTICAL           VOL ADSORBED
+             PRESSURE          THICKNESS,(A )          (cc/g STP)
+
+              0.0045                2.464                 3.9411
+              0.0111                2.674                 5.0386
+              0.0280                2.965                 6.1618
+              0.0611                3.307                 7.1627
+              0.0738                3.410                 7.4125
+              0.0994                3.596                 7.8078
+              0.1485                3.906                 8.5881
+              0.1990                4.195                 9.2302
+              0.2489                4.468                 9.8762
+              0.2989                4.738                10.5368
+              0.3952                5.272                12.0630
+              0.4930                5.864                14.5741
+              0.5476                6.231                16.5683
+              0.5971                6.594                18.7423
+              0.6464                6.993                21.2215
+              0.6977                7.460                23.6361
+              0.7474                7.977                25.6684
+              0.7961                8.569                27.6599
+              0.8452                9.279                30.1084
+              0.8941               10.151                33.5576
+              0.9243               10.805                36.0296
+              0.9484               11.417                38.3156
+              0.9677               11.981                40.8020
+              0.9797               12.370                43.0085
+              0.9926               12.833                46.7551
+
+             THICKNESS VALUES USED IN THE LEAST-SQUARES ANALYSIS
+             WERE BETWEEN   3.500 AND   5.000 A .
+
+                                                       0.465
+             t = [   16.7853/(    0.0659 - log(P/Po))]
+
+             SURFACE AREA CORRECTION FACTOR IS  1.000.
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE  8
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                     BJH ADSORPTION PORE DISTRIBUTION REPORT
+
+    PORE DIAMETER    AVERAGE   INCREMENTAL CUMULATIVE  INCREMENTAL CUMULATIVE  
+        RANGE        DIAMETER  PORE VOLUME PORE VOLUME  PORE AREA   PORE AREA  
+         (A )          (A )      (cc/g)      (cc/g)     (sq. m/g)   (sq. m/g)  
+
+    2614.9-  963.8    1155.5     0.006166    0.006166      0.213       0.213   
+     963.8-  611.6     710.9     0.003672    0.009838      0.207       0.420   
+     611.6-  386.0     448.6     0.004242    0.014080      0.378       0.798   
+     386.0-  265.2     302.9     0.004011    0.018091      0.530       1.328   
+     265.2-  191.1     215.7     0.004499    0.022590      0.834       2.162   
+     191.1-  131.7     150.0     0.006600    0.029190      1.760       3.923   
+     131.7-  100.3     111.4     0.004828    0.034018      1.734       5.656   
+     100.3-   80.9      88.3     0.004069    0.038087      1.843       7.499   
+      80.9-   67.4      72.8     0.004386    0.042473      2.410       9.910   
+      67.4-   57.3      61.4     0.005569    0.048042      3.626      13.536   
+      57.3-   49.9      53.0     0.006015    0.054057      4.539      18.075   
+      49.9-   44.0      46.5     0.005376    0.059434      4.624      22.699   
+      44.0-   38.7      40.9     0.004958    0.064392      4.846      27.545   
+      38.7-   31.3      34.0     0.006030    0.070422      7.085      34.629   
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE 10
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                     BJH DESORPTION PORE DISTRIBUTION REPORT
+
+    PORE DIAMETER    AVERAGE   INCREMENTAL CUMULATIVE  INCREMENTAL CUMULATIVE  
+        RANGE        DIAMETER  PORE VOLUME PORE VOLUME  PORE AREA   PORE AREA  
+         (A )          (A )      (cc/g)      (cc/g)     (sq. m/g)   (sq. m/g)  
+
+    2611.3-  460.6     521.5     0.006652    0.006652      0.510       0.510   
+     460.6-  250.1     296.3     0.002285    0.008937      0.308       0.819   
+     250.1-  150.0     175.4     0.002370    0.011306      0.540       1.359   
+     150.0-  110.5     124.0     0.004121    0.015428      1.330       2.689   
+     110.5-   98.5     103.7     0.002430    0.017858      0.937       3.625   
+      98.5-   78.6      86.1     0.004536    0.022394      2.106       5.732   
+      78.6-   65.1      70.4     0.003577    0.025970      2.031       7.763   
+      65.1-   55.0      59.1     0.003388    0.029359      2.294      10.057   
+      55.0-   47.1      50.4     0.003693    0.033052      2.931      12.988   
+      47.1-   41.0      43.6     0.004289    0.037341      3.937      16.926   
+      41.0-   36.2      38.3     0.006367    0.043708      6.655      23.580   
+      36.2-   34.3      35.2     0.009117    0.052825     10.363      33.943   
+      34.3-   32.1      33.1     0.012623    0.065447     15.243      49.186   
+      32.1-   29.8      30.9     0.007262    0.072710      9.415      58.602   
+      29.8-   25.9      27.5     0.001490    0.074200      2.166      60.768   
+                      Micromeritics Instrument Corporation       
+   ASAP 2400 V3.07                                                    PAGE 12
+
+   SAMPLE DIRECTORY/NUMBER: DATA73  /85                START 11:11:31 06/20/19
+   SAMPLE ID: UB 89 Ni2x-Al2O3 deg.150C Shamanaev      COMPL 19:43:05 06/20/19
+   SUBMITTER:                                          REPRT 10:13:59 06/21/19
+   OPERATOR:                                           SAMPLE WT:    0.2990 g
+   STATION NUMBER: 5       EQUIL INTERVAL:    25 sec   FREE SPACE:  56.1648 cc
+
+                                SUMMARY REPORT
+
+
+                                     AREA
+
+   BET SURFACE AREA:                                         33.4505   sq. m/g
+
+   SINGLE POINT SURFACE AREA AT P/Po 0.1990:                 32.1614   sq. m/g
+
+   BJH CUMULATIVE ADSORPTION SURFACE AREA OF PORES
+    BETWEEN     17.0000 AND   3000.0000 A  DIAMETER:         34.6293   sq. m/g
+
+   BJH CUMULATIVE DESORPTION SURFACE AREA OF PORES
+    BETWEEN     17.0000 AND   3000.0000 A  DIAMETER:         60.7677   sq. m/g
+
+   MICROPORE AREA:                                           -3.2412   sq. m/g
+
+
+
+                                    VOLUME
+
+   SINGLE POINT TOTAL PORE VOLUME OF PORES LESS THAN
+      2614.9331 A  DIAMETER AT P/Po 0.9926:                   0.072321 cc/g
+
+   BJH CUMULATIVE ADSORPTION PORE VOLUME OF PORES
+    BETWEEN     17.0000 AND   3000.0000 A  DIAMETER:          0.070422 cc/g
+
+   BJH CUMULATIVE DESORPTION PORE VOLUME OF PORES
+    BETWEEN     17.0000 AND   3000.0000 A  DIAMETER:          0.074200 cc/g
+
+   MICROPORE VOLUME:                                         -0.001097 cc/g
+
+
+                                  PORE SIZE
+
+   AVERAGE PORE DIAMETER (4V/A BY BET):                      86.4809   A 
+
+   BJH ADSORPTION AVERAGE PORE DIAMETER (4V/A):              81.3432   A 
+
+   BJH DESORPTION AVERAGE PORE DIAMETER (4V/A):              48.8416   A 
+
+     
