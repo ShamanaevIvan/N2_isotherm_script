@@ -411,8 +411,9 @@ class Isotherm:
             else:
                 new_bet_surface_area_report_titles.append(' '.join(i))
 
+        bet_report_numpy = np.array(self.bet_surface_area_report).astype(float)
         self.df_bet = pd.DataFrame(
-            self.bet_surface_area_report, columns=new_bet_surface_area_report_titles)
+            bet_report_numpy, columns=new_bet_surface_area_report_titles)
 
         # micropore report df
         new_micropore_report_titles = []
@@ -571,16 +572,16 @@ class Isotherm:
         plt.xlabel('RELATIVE PRESSURE')
         plt.ylabel('VOL ADSORBED (cc/g STP)')
 
-    def bet_plot1(self):
-        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
-                 self.df_bet['VOL ADSORBED (cc/g STP)'].astype('float64'),
+    def plot_bet_vol(self):
+        plt.plot(self.df_bet['RELATIVE PRESSURE'],
+                 self.df_bet['VOL ADSORBED (cc/g STP)'],
                  marker='o')
         plt.xlabel('RELATIVE PRESSURE')
         plt.ylabel('VOL ADSORBED (cc/g STP)')
 
-    def bet_plot2(self):
-        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
-                 self.df_bet['1/[VA(Po/P - 1)]'].astype('float64'),
+    def plot_bet(self):
+        plt.plot(self.df_bet['RELATIVE PRESSURE'],
+                 self.df_bet['1/[VA(Po/P - 1)]'],
                  marker='o')
         plt.xlabel('RELATIVE PRESSURE')
         plt.ylabel('1/[VA(Po/P - 1)]')
