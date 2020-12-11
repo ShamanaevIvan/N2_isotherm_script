@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 class Isotherm:
-    def __init__(self, file_name):
+    def __init__(self, file_name=''):
         self.file_name                         = file_name
         self.sample_directory                  = ''
         self.sample_number                     = ''
@@ -55,7 +55,8 @@ class Isotherm:
         self.df_micropore                      = pd.DataFrame()
         self.df_bjh_adsorption                 = pd.DataFrame()
         self.df_bjh_desorption                 = pd.DataFrame()
-        
+        self.summary_report_dict               = {}
+
         self.isotherm_read()
         
     def __str__(self):
@@ -65,7 +66,6 @@ class Isotherm:
         '''
         Reads data from ASAP 2400 V3.07 report file
         '''
-        page_number = 0
         analysis_log_flag = False
         info_flag = False
         bet_surface_area_report_falg = False
@@ -93,8 +93,6 @@ class Isotherm:
         free_space_re = re.compile('FREE SPACE:')
         analysis_log_re = re.compile('ANALYSIS LOG')
         micromeritics_re = re.compile('Micromeritics Instrument Corporation')
-        time_log_re = re.compile(r'\d+:\d+')
-        data_log_re = re.compile(r'\d+.\d+')
         bet_surface_area_report_re = re.compile('BET SURFACE AREA REPORT')
         bet_surface_area_re = re.compile('BET SURFACE AREA:')
         slope_re = re.compile('SLOPE:')
@@ -102,7 +100,6 @@ class Isotherm:
         c_re = re.compile('C:')
         vm_re = re.compile('VM:')
         correlation_coefficient_re = re.compile('CORRELATION COEFFICIENT:')
-        bet_surface_area_table_re = re.compile(r'RELATIVE\sVOL ADSORBED')
         micropore_analysis_report_re = re.compile('MICROPORE ANALYSIS REPORT')
         micropore_volume_re = re.compile('MICROPORE VOLUME:')
         micropore_area_re = re.compile('MICROPORE AREA:')
@@ -198,7 +195,6 @@ class Isotherm:
                         m_c = c_re.search(line)
                         m_vm = vm_re.search(line)
                         m_correlation_coefficient= correlation_coefficient_re.search(line)
-                        m_bet_surface_area_table = bet_surface_area_table_re.search(line)
 
                         if m_bet_surface_area:
                             self.bet_surface_area = line[m_bet_surface_area.end():].split()[0]
@@ -236,7 +232,6 @@ class Isotherm:
                         m_slope = slope_re.search(line)
                         m_y_intercept = y_intercept_re.search(line)
                         m_correlation_coefficient= correlation_coefficient_re.search(line)
-                        m_bet_surface_area_table = bet_surface_area_table_re.search(line)
 
                         if m_micropore_volume:
                             self.micropore_volume = line[m_micropore_volume.end():].split()[0]
@@ -256,7 +251,6 @@ class Isotherm:
                             micropore_postscript_flag = True
 
                         if micromeritics_re.search(line):
-                            micropore_analysis_report_falg = False
                             micropore_postscript_flag = False
 
                         if micropore_postscript_flag:
@@ -318,39 +312,7 @@ class Isotherm:
                     summary_flag = True
 
             f.close()
-
-    def print_info(self):
-        print('sample directory\t', self.sample_directory)
-        print('sample number\t', self.sample_number)
-        print('start_time\t', self.start_time)
-        print('start_date\t', self.start_date)
-        print('sample id\t', self.sample_id)
-        print('compl time\t', self.compl_time)
-        print('compl date\t', self.compl_date)
-        print('submitter\t', self.submitter)
-        print('reprt time\t', self.reprt_time)
-        print('reprt date\t', self.reprt_date)
-        print('operator\t', self.operator)
-        print('sample wt\t', self.sample_wt)
-        print('station number\t', self.station_number)
-        print('equil interal\t', self.equil_interval)
-        print('free space\t', self.free_space)
-        print('bet surface area\t', self.bet_surface_area, r'+\-', self.bet_surface_area_deviation)
-        print('slope\t', self.bet_slope, r'+\-', self.bet_slope_deviation)
-        print('y-intercept\t', self.bet_y_intercept, r'+\-', self.bet_y_intercept_deviation)
-        print('c\t', self.c)
-        print('vm\t', self.vm, 'cc/g STP')
-        print('correlation coefficient', self.correlation_coefficient_bet)
-        print('micropore volume\t', self.micropore_volume, 'cc/g')
-        print('micropore area\t', self.micropore_area, 'sq. m/g')
-        print('external surface area\t', self.external_surface_area, 'sq. m/g')
-        print('micropore slope\t', self.micropore_slope, '+\-', self.micropore_slope_deviation)
-        print('micropore y-intercept\t', self.micropore_y_intercept, r'+\-', self.micropore_y_intercept_deviation)
-        print('micropore correlation coefficient', self.correlation_coefficient_micropore)
-        print('micropore postscript ' + ' '.join([self.micropore_postscript[0], self.micropore_postscript[1]]))
-        print('micropore equation ' + ''.join([self.micropore_postscript[3], '**', self.micropore_postscript[2]]))
-
-    def print_summary_report(self):
+       
         summary_report_new = [self.summary_report[1],
                               self.summary_report[2],
                               self.summary_report[3]+self.summary_report[4],
@@ -363,22 +325,21 @@ class Isotherm:
                               self.summary_report[17],
                               self.summary_report[18],
                               self.summary_report[19]]
-        summary_report_dict = {summary_report_new[0][0][:-1]: summary_report_new[0][1],
-                               summary_report_new[1][0][:-1]: summary_report_new[1][1],
-                               ' '.join(summary_report_new[2][:5])[:-1]: summary_report_new[2][5],
-                               ' '.join(summary_report_new[3][:5])[:-1]: summary_report_new[3][5],
-                               summary_report_new[4][0][:-1]: summary_report_new[4][1],
-                               ' '.join(summary_report_new[5][:3])[:-1]: summary_report_new[5][3].split()[0],
-                               ' '.join(summary_report_new[6][:5])[:-1]: summary_report_new[6][5].split()[0],
-                               ' '.join(summary_report_new[7][:5])[:-1]: summary_report_new[7][5].split()[0],
-                               summary_report_new[8][0][:-1]: summary_report_new[8][1].split()[0],
-                               summary_report_new[9][0][:-1]: summary_report_new[9][1],
-                               summary_report_new[10][0][:-1]: summary_report_new[10][1],
-                               summary_report_new[11][0][:-1]: summary_report_new[11][1],
-                               }
-        return summary_report_dict
+        self.summary_report_dict = {summary_report_new[0][0][:-1]: summary_report_new[0][1],
+                                    summary_report_new[1][0][:-1]: summary_report_new[1][1],
+                                    ' '.join(summary_report_new[2][:5])[:-1]: summary_report_new[2][5],
+                                    ' '.join(summary_report_new[3][:5])[:-1]: summary_report_new[3][5],
+                                    summary_report_new[4][0][:-1]: summary_report_new[4][1],
+                                    ' '.join(summary_report_new[5][:3])[:-1]: summary_report_new[5][3].split()[0],
+                                    ' '.join(summary_report_new[6][:5])[:-1]: summary_report_new[6][5].split()[0],
+                                    ' '.join(summary_report_new[7][:5])[:-1]: summary_report_new[7][5].split()[0],
+                                    summary_report_new[8][0][:-1]: summary_report_new[8][1].split()[0],
+                                    summary_report_new[9][0][:-1]: summary_report_new[9][1],
+                                    summary_report_new[10][0][:-1]: summary_report_new[10][1],
+                                    summary_report_new[11][0][:-1]: summary_report_new[11][1],
+                                    }
 
-    def print_analysis_log(self):
+        # analysis log report df
         new_analysis_log_titles = [' '.join(i) for i in zip(self.analysis_log_titles[0],
                                                             self.analysis_log_titles[1])]
         new_analysis_log = []
@@ -394,26 +355,8 @@ class Isotherm:
         self.df_analysis_log['DATE'] = pd.to_datetime(' '.join([self.start_date,
                                                                 self.start_time])) + log_timedelta_series
         self.df_analysis_log.set_index('DATE', inplace=True)
-        return self.df_analysis_log
 
-    def plot_analysis_log(self):
-        plt.plot(self.df_analysis_log['ELAPSED TIME (HR:MN)'].dt.seconds/3600,
-                 self.df_analysis_log['PRESSURE (mmHg)'],
-                 marker='o',
-                 label='PRESSURE (mmHg)')
-        plt.plot(self.df_analysis_log['ELAPSED TIME (HR:MN)'].dt.seconds/3600,
-                 self.df_analysis_log['SATURATION PRESS.(mmHg)'],
-                 marker='o',
-                 label='SATURATION PRESS.(mmHg)')
-        plt.legend()
-
-    def plot_isotherm(self):
-        plt.plot(self.df_analysis_log['RELATIVE PRESSURE'].values[~np.isnan(self.df_analysis_log['RELATIVE PRESSURE'].values)],
-                 self.df_analysis_log['VOL ADSORBED (cc/g STP)'].values[~np.isnan(self.df_analysis_log['VOL ADSORBED (cc/g STP)'].values)])
-        plt.xlabel('RELATIVE PRESSURE')
-        plt.ylabel('VOL ADSORBED (cc/g STP)')
-
-    def print_bet_report(self):
+        # bet report df
         new_bet_surface_area_report_titles = []
         for i in zip(self.bet_surface_area_report_titles[0],
                      self.bet_surface_area_report_titles[1]):
@@ -422,25 +365,9 @@ class Isotherm:
             else:
                 new_bet_surface_area_report_titles.append(' '.join(i))
 
-        self.df_bet = pd.DataFrame(self.bet_surface_area_report,
-                              columns=new_bet_surface_area_report_titles)
-        return self.df_bet
+        self.df_bet = pd.DataFrame(self.bet_surface_area_report, columns=new_bet_surface_area_report_titles)
 
-    def bet_plot1(self):
-        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
-                 self.df_bet['VOL ADSORBED (cc/g STP)'].astype('float64'),
-                 marker='o')
-        plt.xlabel('RELATIVE PRESSURE')
-        plt.ylabel('VOL ADSORBED (cc/g STP)')
-
-    def bet_plot2(self):
-        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
-                 self.df_bet['1/[VA(Po/P - 1)]'].astype('float64'),
-                 marker='o')
-        plt.xlabel('RELATIVE PRESSURE')
-        plt.ylabel('1/[VA(Po/P - 1)]')
-
-    def print_micropore_report(self):
+        # micropore report df
         new_micropore_report_titles = []
         for i in zip(self.micropore_report_titles[0],
                      self.micropore_report_titles[1]):
@@ -448,16 +375,8 @@ class Isotherm:
 
         self.df_micropore = pd.DataFrame(self.micropore_report,
                                          columns=new_micropore_report_titles)
-        return self.df_micropore
 
-    def micropore_plot(self):
-        plt.plot(self.df_micropore['RELATIVE PRESSURE'].astype('float64'),
-                 self.df_micropore['STATISTICAL THICKNESS,(A )'].astype('float64'),
-                 marker='o')
-        plt.xlabel('RELATIVE PRESSURE')
-        plt.ylabel('STATISTICAL THICKNESS,(A )')
-
-    def print_bjh_adsorption_report(self):
+        # bjh adsorption report df
         new_bjh_adsorption_report_titles = []
         new_bjh_adsorption_report_titles.append([' '.join([self.bjh_adsorption_report_titles[0][0],
                                                            self.bjh_adsorption_report_titles[0][1]]),
@@ -498,15 +417,8 @@ class Isotherm:
         final_bjh_adsorption_report = [[i[0][:-1]]+i[1:] for i in self.bjh_adsorption_report]
 
         self.df_bjh_adsorption = pd.DataFrame(final_bjh_adsorption_report, columns=final_bjh_adsorption_report_titles)
-        return self.df_bjh_adsorption
-
-    def bjh_adsorption_plot(self):
-        plt.plot(self.df_bjh_adsorption['AVERAGE DIAMETER (A)'].astype('float64'),
-                 self.df_bjh_adsorption['INCREMENTAL PORE VOLUME (cc/g)'].astype('float64'),
-                 marker='o'
-                 )
-
-    def print_bjh_desorption_report(self):
+        
+        # bjh desorption report df
         new_bjh_desorption_report_titles = []
         new_bjh_desorption_report_titles.append([' '.join([self.bjh_desorption_report_titles[0][0],
                                                            self.bjh_desorption_report_titles[0][1]]),
@@ -548,6 +460,85 @@ class Isotherm:
 
         self.df_bjh_desorption = pd.DataFrame(final_bjh_desorption_report, columns=final_bjh_desorption_report_titles)
         return self.df_bjh_desorption
+
+    def print_info(self):
+        print('sample directory\t', self.sample_directory)
+        print('sample number\t', self.sample_number)
+        print('start_time\t', self.start_time)
+        print('start_date\t', self.start_date)
+        print('sample id\t', self.sample_id)
+        print('compl time\t', self.compl_time)
+        print('compl date\t', self.compl_date)
+        print('submitter\t', self.submitter)
+        print('reprt time\t', self.reprt_time)
+        print('reprt date\t', self.reprt_date)
+        print('operator\t', self.operator)
+        print('sample wt\t', self.sample_wt)
+        print('station number\t', self.station_number)
+        print('equil interal\t', self.equil_interval)
+        print('free space\t', self.free_space)
+        print('bet surface area\t', self.bet_surface_area, r'+\-', self.bet_surface_area_deviation)
+        print('slope\t', self.bet_slope, r'+\-', self.bet_slope_deviation)
+        print('y-intercept\t', self.bet_y_intercept, r'+\-', self.bet_y_intercept_deviation)
+        print('c\t', self.c)
+        print('vm\t', self.vm, 'cc/g STP')
+        print('correlation coefficient', self.correlation_coefficient_bet)
+        print('micropore volume\t', self.micropore_volume, 'cc/g')
+        print('micropore area\t', self.micropore_area, 'sq. m/g')
+        print('external surface area\t', self.external_surface_area, 'sq. m/g')
+        print('micropore slope\t', self.micropore_slope, r'+\-', self.micropore_slope_deviation)
+        print('micropore y-intercept\t', self.micropore_y_intercept, r'+\-', self.micropore_y_intercept_deviation)
+        print('micropore correlation coefficient', self.correlation_coefficient_micropore)
+        print('micropore postscript ' + ' '.join([self.micropore_postscript[0], self.micropore_postscript[1]]))
+        print('micropore equation ' + ''.join([self.micropore_postscript[3], '**', self.micropore_postscript[2]]))
+
+    def plot_analysis_log(self):
+        plt.plot(self.df_analysis_log['ELAPSED TIME (HR:MN)'].dt.seconds/3600,
+                 self.df_analysis_log['PRESSURE (mmHg)'],
+                 marker='o',
+                 label='PRESSURE (mmHg)')
+        plt.plot(self.df_analysis_log['ELAPSED TIME (HR:MN)'].dt.seconds/3600,
+                 self.df_analysis_log['SATURATION PRESS.(mmHg)'],
+                 marker='o',
+                 label='SATURATION PRESS.(mmHg)')
+        plt.legend()
+
+    def plot_isotherm(self):
+        plt.plot(self.df_analysis_log['RELATIVE PRESSURE'].values[~np.isnan(self.df_analysis_log['RELATIVE PRESSURE'].values)],
+                 self.df_analysis_log['VOL ADSORBED (cc/g STP)'].values[~np.isnan(self.df_analysis_log['VOL ADSORBED (cc/g STP)'].values)])
+        plt.xlabel('RELATIVE PRESSURE')
+        plt.ylabel('VOL ADSORBED (cc/g STP)')
+
+    def bet_plot1(self):
+        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
+                 self.df_bet['VOL ADSORBED (cc/g STP)'].astype('float64'),
+                 marker='o')
+        plt.xlabel('RELATIVE PRESSURE')
+        plt.ylabel('VOL ADSORBED (cc/g STP)')
+
+    def bet_plot2(self):
+        plt.plot(self.df_bet['RELATIVE PRESSURE'].astype('float64'),
+                 self.df_bet['1/[VA(Po/P - 1)]'].astype('float64'),
+                 marker='o')
+        plt.xlabel('RELATIVE PRESSURE')
+        plt.ylabel('1/[VA(Po/P - 1)]')
+
+    def print_micropore_report(self):
+
+        return self.df_micropore
+
+    def micropore_plot(self):
+        plt.plot(self.df_micropore['RELATIVE PRESSURE'].astype('float64'),
+                 self.df_micropore['STATISTICAL THICKNESS,(A )'].astype('float64'),
+                 marker='o')
+        plt.xlabel('RELATIVE PRESSURE')
+        plt.ylabel('STATISTICAL THICKNESS,(A )')
+
+    def bjh_adsorption_plot(self):
+        plt.plot(self.df_bjh_adsorption['AVERAGE DIAMETER (A)'].astype('float64'),
+                 self.df_bjh_adsorption['INCREMENTAL PORE VOLUME (cc/g)'].astype('float64'),
+                 marker='o'
+                 )
 
     def bjh_desorption_plot(self):
         plt.plot(self.df_bjh_desorption['AVERAGE DIAMETER (A)'].astype('float64'),
