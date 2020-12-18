@@ -32,6 +32,7 @@ class Isotherm:
 		self.bet_surface_area_report_titles = []
 		self.new_bet_surface_area_report_titles = []
 		self.bet_surface_area_report = []
+		self.bet_surface_area_report_units = []
 		self.bet_slope = ''
 		self.bet_slope_deviation = ''
 		self.bet_y_intercept = ''
@@ -50,6 +51,7 @@ class Isotherm:
 		self.micropore_report_titles = []
 		self.micropore_report = []
 		self.micropore_postscript = []
+		self.new_micropore_report_titles = []
 		self.bjh_adsorption_report_titles = []
 		self.bjh_adsorption_report = []
 		self.bjh_desorption_report_titles = []
@@ -409,10 +411,22 @@ class Isotherm:
 				self.new_bet_surface_area_report_titles.append(''.join(i))
 			else:
 				self.new_bet_surface_area_report_titles.append(' '.join(i))
-				
+		
+		self.bet_surface_area_report_units.append('')
+		units = re.search(r'\([\w\/\: ]*\)', self.new_bet_surface_area_report_titles[1])
+		rest_title = ''.join(self.new_bet_surface_area_report_titles[1].split('(')[0].strip())
+		self.bet_surface_area_report_units.append(units.group()[1:-1])
+		self.new_bet_surface_area_report_titles[1] = rest_title
+		self.bet_surface_area_report_units.append('')
+		
 		self.bet_surface_area_report = [[float(i) for i in j] for j in self.bet_surface_area_report]
 		self.bet_surface_area_report = list(map(list, zip(*self.bet_surface_area_report)))
 		
+		# micropore report df
+		for i in zip(self.micropore_report_titles[0],
+					self.micropore_report_titles[1]):
+			self.new_micropore_report_titles.append(' '.join(i))
+			
 	def print_info(self):
 		print('sample directory\t', self.sample_directory)
 		print('sample number\t', self.sample_number)
@@ -458,13 +472,13 @@ class Isotherm:
 		wks = PyOrigin.ActiveLayer()     # Get sheet
 		
 		# Setup worksheet.
-		wks.SetData(a.new_analysis_log, -1) # Put imported data into worksheet.
-		wks.SetName(a.file_name) # Set sheet name to file name without path.
+		wks.SetData(self.new_analysis_log, -1) # Put imported data into worksheet.
+		wks.SetName(self.file_name) # Set sheet name to file name without path.
 		
 		# Set worksheet label rows.
-		for i in range(len(a.new_analysis_log_titles)):
-			wks.Columns(i).SetLongName(a.new_analysis_log_titles[i])
-			wks.Columns(i).SetUnits(a.analysis_log_units[i])
+		for i in range(len(self.new_analysis_log_titles)):
+			wks.Columns(i).SetLongName(self.new_analysis_log_titles[i])
+			wks.Columns(i).SetUnits(self.analysis_log_units[i])
 			
 		wks.Columns(3).SetFormat(2) # Set time format
 		wks.Columns(0).SetType(0)
@@ -485,8 +499,104 @@ class Isotherm:
 		rng.Add('Y', wks, 0, 1, -1, 1) # Add worksheet's 2nd col as Y.
 		rng.Add('Y', wks, 0, 4, -1, 4)
 		dp = gl.AddPlot(rng, 202)      # Plot data range.
+
+	def plot_isotherm(self):
+		# Create worksheet page named 'MyData' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_WKS, "MyData", "Origin", 1)
+		wp = PyOrigin.Pages(str(pgName)) # Get page
+		wks = PyOrigin.ActiveLayer()     # Get sheet
+		
+		# Setup worksheet.
+		wks.SetData(self.new_analysis_log, -1) # Put imported data into worksheet.
+		wks.SetName(self.file_name) # Set sheet name to file name without path.
+		
+		# Set worksheet label rows.
+		for i in range(len(self.new_analysis_log_titles)):
+			wks.Columns(i).SetLongName(self.new_analysis_log_titles[i])
+			wks.Columns(i).SetUnits(self.analysis_log_units[i])
+			
+		wks.Columns(3).SetFormat(2) # Set time format
+		wks.Columns(0).SetType(3)
+		wks.Columns(1).SetType(0)
+		wks.Columns(2).SetType(0)
+		wks.Columns(3).SetType(3)
+		wks.Columns(4).SetType(0)
+		
+		# Create graph page named 'MyGraph' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_GRAPH, "MyGraph", "Origin", 1)
+		gp = PyOrigin.Pages(str(pgName))
+		gp.LT_execute("layer1.x.opposite = 1;layer1.y.opposite = 1;")
+		gl = gp.Layers(0)
+
+		# Create data range and plot it into the graph layer.
+		rng = PyOrigin.NewDataRange()  # Create data range.
+		rng.Add('X', wks, 0, 0, -1, 0) # Add worksheet's 4th col as X.
+		rng.Add('Y', wks, 0, 2, -1, 2) # Add worksheet's 2nd col as Y.
+		dp = gl.AddPlot(rng, 202)      # Plot data range.
+		
+	def plot_bet_vol(self):
+		# Create worksheet page named 'MyData1' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_WKS, "MyData1", "Origin", 1)
+		wp = PyOrigin.Pages(str(pgName)) # Get page
+		wks = PyOrigin.ActiveLayer()     # Get sheet
+		
+		# Setup worksheet.
+		wks.SetData(self.bet_surface_area_report, -1) # Put imported data into worksheet.
+		wks.SetName(self.file_name) # Set sheet name to file name without path.
+		
+		# Set worksheet label rows.
+		for i in range(len(self.new_bet_surface_area_report_titles)):
+			wks.Columns(i).SetLongName(self.new_bet_surface_area_report_titles[i])
+			wks.Columns(i).SetUnits(self.bet_surface_area_report_units[i])
+			
+		wks.Columns(0).SetType(3)
+		wks.Columns(1).SetType(0)
+		wks.Columns(2).SetType(0)
+		
+		# Create graph page named 'MyGraph1' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_GRAPH, "MyGraph1", "Origin", 1)
+		gp = PyOrigin.Pages(str(pgName))
+		gp.LT_execute("layer1.x.opposite = 1;layer1.y.opposite = 1;")
+		gl = gp.Layers(0)
+		
+		# Create data range and plot it into the graph layer.
+		rng = PyOrigin.NewDataRange()  # Create data range.
+		rng.Add('X', wks, 0, 0, -1, 0) # Add worksheet's 1st col as X.
+		rng.Add('Y', wks, 0, 1, -1, 1) # Add worksheet's 2nd col as Y.
+		dp = gl.AddPlot(rng, 202)      # Plot data range.
+
+	def plot_bet(self):
+		# Create worksheet page named 'MyData2' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_WKS, "MyData2", "Origin", 1)
+		wp = PyOrigin.Pages(str(pgName)) # Get page
+		wks = PyOrigin.ActiveLayer()     # Get sheet
+		
+		# Setup worksheet.
+		wks.SetData(self.bet_surface_area_report, -1) # Put imported data into worksheet.
+		wks.SetName(self.file_name) # Set sheet name to file name without path.
+		
+		# Set worksheet label rows.
+		for i in range(len(self.new_bet_surface_area_report_titles)):
+			wks.Columns(i).SetLongName(self.new_bet_surface_area_report_titles[i])
+			wks.Columns(i).SetUnits(self.bet_surface_area_report_units[i])
+			
+		wks.Columns(0).SetType(3)
+		wks.Columns(1).SetType(0)
+		wks.Columns(2).SetType(0)
+		
+		# Create graph page named 'MyGraph2' using template named 'Origin'.
+		pgName = PyOrigin.CreatePage(PyOrigin.PGTYPE_GRAPH, "MyGraph2", "Origin", 1)
+		gp = PyOrigin.Pages(str(pgName))
+		gp.LT_execute("layer1.x.opposite = 1;layer1.y.opposite = 1;")
+		gl = gp.Layers(0)
+		
+		# Create data range and plot it into the graph layer.
+		rng = PyOrigin.NewDataRange()  # Create data range.
+		rng.Add('X', wks, 0, 0, -1, 0) # Add worksheet's 1st col as X.
+		rng.Add('Y', wks, 0, 2, -1, 2) # Add worksheet's 2nd col as Y.
+		dp = gl.AddPlot(rng, 202)      # Plot data range.
 		
 if __name__ == '__main__':
 	a = Isotherm('DATA73_X-Al2O3.083')
-	print(a.bet_surface_area_report)
-	print(a.new_bet_surface_area_report_titles)
+	print(a.micropore_report)
+	print(a.new_micropore_report_titles)
